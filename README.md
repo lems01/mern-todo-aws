@@ -92,12 +92,15 @@ console.log(`Server running on port ${port}`)
 node index.js
 ```
 If everything goes well you should see **Server running on port 5000** in your terminal. 
+
 ![server running](assets/terminal-response.png)
 
 Now we need to open port 5000 in our security group on AWS
+
 ![Security Group](assets/port-5000.png)
 
 Try to access your Servver's public IP on port 5000 `http://<public ip>:5000`
+
 ![Welcome to Express](assets/welcome.png)
 
 ### Route
@@ -201,12 +204,13 @@ For the mongoDB we will make use of mlab. create an account using the link `[mla
 4. Set the region close to you
 Click on **Create Deployment**
 - Once you have created the cluster, go to network access and click on **ALLOW ACCESS FROM ANYWHERE** then **Confirm**
+
 ![network access](assets/network-access.png)
+
 - From your cluster click on **Create Database**, enter the **Database name** and the **collection name** then **Create**
-![database]()
 - Goto **Database Access** and select **ADD NEW DATABASE USER**, chose Password as authentication methods and setyour username and password hen click on **Add User**
 
-![database-user](assets/database-user)
+![database-user](assets/database-user.png)
 
 Once all these above steps are done. Create a `.env` file in your `ToDo` directory and add the connection string to access the database in it as seen below
 ```text
@@ -215,9 +219,12 @@ DB = 'mongodb+srv://<username>:<password>@cluster0.mvbzlyr.mongodb.net/?retryWri
 You can get the connection string using the steps below
 
 ![cluster](assets/cluster.png)
-![cluster](assets/connect.png)
-![cluster](assets/drivers.png)
-![cluster](assets/node-connect.png)
+
+![connect](assets/connect.png)
+
+![drivers](assets/drivers.png)
+
+![node connect](assets/node-connect.png)
 
 Finally, we need to update the `index.js`. delete the existing content and replace it with the code below
 ```JavaScript
@@ -262,16 +269,19 @@ app.listen(port, () => {
 ```
 
 start your server using the command, you will see a message that **Database connected successfully**
-[Database Connected](assets/success-database.png)
+
+![Database Connected](assets/success-database.png)
 
 
 ### Testing Backend Code Without Frontend using RESTful API
 In this project, we will use **Postman** to test our API.
 You should test all API endpoints and make sure they are workin. For example the endpoints that require bosy, you shouls send JSO back with the necessary fields.
-- Create a **POST** request to the API `http://<Public ip>:500/api/todos`. This request sends a new task to our To-Do list so the application could store it in the database. set header key **Content-Type** as **application-json**
+- Create a **POST** request to the API `http://<Public ip>:500/api/todos`. This request sends a new task to our To-Do list so the application could store it in the database. set header key **Content-Type** as **application-json**'
+
 ![header](assets/header.png)
 
 check the image below
+
 ![post](assets/post.png)
 
 - Create a **GET** request to the API on `http://<public-ip>:5000/api/todos`. this request retrieves all existing records from our To-Do application.
@@ -308,7 +318,7 @@ npm install nodemon --save-dev
 },
 ```
 
-![Replace Scripts](asset/replace.png)
+![Replace Scripts](assets/replace.png)
 
 ### Configure Proxy in `package.json`
 1. Change directory to `client`
