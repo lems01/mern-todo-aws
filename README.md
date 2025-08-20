@@ -13,18 +13,10 @@ The application allows users to:
 The project is built using the **MERN stack** and deployed on **AWS EC2 instances**.  
 
 **Key Components:**  
-- **Frontend:** React.js (hosted on AWS EC2 / S3 + CloudFront for scalability)  
+- **Frontend:** React.js 
 - **Backend:** Node.js + Express.js (running on AWS EC2)  
-- **Database:** MongoDB (MongoDB Atlas / self-hosted on AWS EC2)  
-- **Deployment:** Nginx/PM2 for backend, served via AWS infrastructure  
-
-## ⚙️ Tech Stack  
-- **Frontend:** React.js, Axios, Bootstrap / Material UI  
-- **Backend:** Node.js, Express.js  
-- **Database:** MongoDB (Atlas / AWS EC2)  
-- **Cloud Provider:** AWS (EC2, S3, CloudFront, IAM, Security Groups)  
-- **Process Manager:** PM2  
-- **Reverse Proxy:** Nginx  
+- **Database:** MongoDB (running on MongoDB Atlas)
+- **Deployment:** Nginx for backend, served via AWS infrastructure  
 
 ## 🚀 Steps  
 
@@ -209,21 +201,23 @@ For the mongoDB we will make use of mlab. create an account using the link `[mla
 4. Set the region close to you
 Click on **Create Deployment**
 - Once you have created the cluster, go to network access and click on **ALLOW ACCESS FROM ANYWHERE** then **Confirm**
-[network access](assets/network-access.png)
+![network access](assets/network-access.png)
 - From your cluster click on **Create Database**, enter the **Database name** and the **collection name** then **Create**
-[database]()
+![database]()
 - Goto **Database Access** and select **ADD NEW DATABASE USER**, chose Password as authentication methods and setyour username and password hen click on **Add User**
-[database-user](assets/database-user)
+
+![database-user](assets/database-user)
 
 Once all these above steps are done. Create a `.env` file in your `ToDo` directory and add the connection string to access the database in it as seen below
 ```text
 DB = 'mongodb+srv://<username>:<password>@cluster0.mvbzlyr.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0'
 ```
 You can get the connection string using the steps below
-[cluster](assets/cluster.png)
-[cluster](assets/connect.png)
-[cluster](assets/drivers.png)
-[cluster](assets/node-connect.png)
+
+![cluster](assets/cluster.png)
+![cluster](assets/connect.png)
+![cluster](assets/drivers.png)
+![cluster](assets/node-connect.png)
 
 Finally, we need to update the `index.js`. delete the existing content and replace it with the code below
 ```JavaScript
@@ -268,25 +262,25 @@ app.listen(port, () => {
 ```
 
 start your server using the command, you will see a message that **Database connected successfully**
-[Database Connected](assets/success-database)
+[Database Connected](assets/success-database.png)
 
 
 ### Testing Backend Code Without Frontend using RESTful API
 In this project, we will use **Postman** to test our API.
 You should test all API endpoints and make sure they are workin. For example the endpoints that require bosy, you shouls send JSO back with the necessary fields.
 - Create a **POST** request to the API `http://<Public ip>:500/api/todos`. This request sends a new task to our To-Do list so the application could store it in the database. set header key **Content-Type** as **application-json**
-[header](assets/header.png)
+![header](assets/header.png)
 
 check the image below
-[post](assets/post.png)
+![post](assets/post.png)
 
 - Create a **GET** request to the API on `http://<public-ip>:5000/api/todos`. this request retrieves all existing records from our To-Do application.
 
-[get](assets/get.png)
+![get](assets/get.png)
 
 - create a **DELETE** request to delete a task from our To-Do list. You'll need to send it's ID as a part of DELETE request
 
-[delete](assets/delete.png)
+![delete](assets/delete.png)
 
 ## **Step 2 - Frontend Creation**  
 It's time to create a user interface for a Web Client (Browser) to interact with the application via API. To start with out with the frontend **ToDo**, we will use the **create-react-app** command to scalfold our app. 
@@ -314,7 +308,7 @@ npm install nodemon --save-dev
 },
 ```
 
-[Replace Scripts](asset/replace.png)
+![Replace Scripts](asset/replace.png)
 
 ### Configure Proxy in `package.json`
 1. Change directory to `client`
@@ -631,23 +625,7 @@ Go to the `ToDo` directory and run
 npm run dev
 ```
 
-
-- Deploy build files with **Nginx** or serve via **S3 + CloudFront** for scalability.
-
-### 6. **MongoDB Setup**  
-- Option 1: Use **MongoDB Atlas** (recommended for production).  
-- Option 2: Install MongoDB on AWS EC2:  
-  ```bash
-  sudo apt install -y mongodb
-  sudo systemctl start mongodb
-  sudo systemctl enable mongodb
-  ```
-
-### 7. **Reverse Proxy with Nginx**  
-Configure Nginx to route traffic to the backend and serve the frontend build.  
-
-### 8. **Access the Application**  
-Open your browser and navigate to your **EC2 public IP / domain**.  
+![output](assets/output.png)  
 
 ## 📂 Project Structure  
 ```
